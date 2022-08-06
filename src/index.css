@@ -1,13 +1,126 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Golos Text';
+    font-weight: 400;
+    src: url(./assets/fonts/golos-text/Golos-Text_Regular.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Golos Text';
+    font-weight: 500;
+    src: url(./assets/fonts/golos-text/Golos-Text_Medium.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Golos Text';
+    font-weight: 600;
+    src: url(./assets/fonts/golos-text/Golos-Text_DemiBold.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Golos Text';
+    font-weight: 700;
+    src: url(./assets/fonts/golos-text/Golos-Text_Bold.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Golos Text';
+    font-weight: 900;
+    src: url(./assets/fonts/golos-text/Golos-Text_Black.ttf) format('truetype');
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    font-family: 'Golos Text', sans-serif;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      scrollbar-width: thin;
+      scrollbar-color: #C2C2C2 #F1F5F9;
+    }
+    body::-webkit-scrollbar {
+      width: 12px;
+    }
+    body::-webkit-scrollbar-track {
+      background-color: #F1F5F9;
+    }
+    body::-webkit-scrollbar-thumb {
+      background-color: #C2C2C2;
+      border-radius: 20px;
+      border: 2px solid #F1F5F9;
+    }
+  }
+
+  #root {
+    background-color: #FBFBFB;
+    min-height: 100%;
+    min-width: 320px;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.hide {
+  opacity: 0;
+  animation: hide 0.2s;
+}
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.show {
+  opacity: 1;
+  animation: show 0.2s;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.hideCard {
+  transform: translateY(20%);
+  opacity: 0;
+  animation: hideCard 0.2s;
+}
+@keyframes hideCard {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+}
+
+.showCard {
+  transform: translateY(0);
+  opacity: 1;
+  animation: showCard 0.2s;
+}
+@keyframes showCard {
+  0% {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
