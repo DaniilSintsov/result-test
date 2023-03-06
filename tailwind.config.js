@@ -2,7 +2,13 @@
 module.exports = {
   content: ['./src/**/*.{html,js,jsx}'],
   theme: {
-    extend: {}
+    extend: {
+      screens: {
+        minw880: {
+          raw: '(min-width: 880px)'
+        }
+      }
+    }
   },
   plugins: []
-}
+};
