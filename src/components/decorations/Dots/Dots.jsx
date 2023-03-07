@@ -6,11 +6,21 @@ const Dots = ({ classes, color }) => {
   const dots = [];
 
   for (let i = 0; i < 10; i++) {
-    dots.push(<div className={dotClasses}></div>);
+    dots.push(
+      <div
+        key={i + 1 + Math.random()} // Primitive unique key creation
+        className={dotClasses}></div>
+    );
   }
 
   for (let i = 0; i < 10; i++) {
-    dotRows.push(<div className="flex justify-between">{dots}</div>);
+    dotRows.push(
+      <div
+        key={i + 1 + Math.random()} // Primitive unique key creation
+        className="flex justify-between">
+        {dots}
+      </div>
+    );
   }
 
   return (

@@ -20,8 +20,8 @@ const Staging = () => {
   const [cardOpacity4, setCardOpacity4] = useState(null);
   const [cardOpacity5, setCardOpacity5] = useState(null);
   const [cardOpacity6, setCardOpacity6] = useState(null);
-  const [blockOpacity1, setBlockOpacity1] = useState(null);
-  const [blockOpacity2, setBlockOpacity2] = useState(null);
+  const [isBlockOpacity1, setIsBlockOpacity1] = useState(null);
+  const [isBlockOpacity2, setIsBlockOpacity2] = useState(null);
 
   useEffect(() => {
     const containerPos = stagingRef.current.getBoundingClientRect().top;
@@ -34,32 +34,41 @@ const Staging = () => {
           : 'hideCard'
       );
 
-      setTogglerOpacity(
+      // Animate description slider
+      if (
         window.scrollY - containerHeight - 300 >= containerPos &&
-          window.scrollY - containerHeight - 2900 <= containerPos
-          ? window.scrollY - containerHeight - 300 >= containerPos &&
+        window.scrollY - containerHeight - 2900 <= containerPos
+      ) {
+        setTogglerOpacity(
+          window.scrollY - containerHeight - 300 >= containerPos &&
             window.scrollY - containerHeight - 1500 <= containerPos
-            ? 'show'
+            ? 'show translate-x-[36%]'
             : 'show'
-          : 'hide'
-      );
+        );
+      } else {
+        setTogglerOpacity('hide');
+      }
 
-      setBlockOpacity1(
+      // Animate first block
+      setIsBlockOpacity1(
         window.scrollY - containerHeight >= containerPos &&
           window.scrollY - containerHeight - 1500 <= containerPos
       );
+
       setCardOpacity1(
         window.scrollY - containerHeight - 500 >= containerPos &&
           window.scrollY - containerHeight - 1200 <= containerPos
           ? 'showCard'
           : 'hideCard' && window.scrollY - containerHeight - 500 >= containerPos
       );
+
       setCardOpacity2(
         window.scrollY - containerHeight - 700 >= containerPos &&
           window.scrollY - containerHeight - 1300 <= containerPos
           ? 'showCard'
           : 'hideCard' && window.scrollY - containerHeight - 700 >= containerPos
       );
+
       setCardOpacity3(
         window.scrollY - containerHeight - 900 >= containerPos &&
           window.scrollY - containerHeight - 1400 <= containerPos
@@ -67,10 +76,12 @@ const Staging = () => {
           : 'hideCard' && window.scrollY - containerHeight - 900 >= containerPos
       );
 
-      setBlockOpacity2(
+      // Animate second block
+      setIsBlockOpacity2(
         window.scrollY - containerHeight - 1500 >= containerPos &&
           window.scrollY - containerHeight - 3100 <= containerPos
       );
+
       setCardOpacity4(
         window.scrollY - containerHeight - 1500 >= containerPos &&
           window.scrollY - containerHeight - 2200 <= containerPos
@@ -78,6 +89,7 @@ const Staging = () => {
           : 'hideCard' &&
               window.scrollY - containerHeight - 1500 >= containerPos
       );
+
       setCardOpacity5(
         window.scrollY - containerHeight - 1700 >= containerPos &&
           window.scrollY - containerHeight - 2400 <= containerPos
@@ -85,6 +97,7 @@ const Staging = () => {
           : 'hideCard' &&
               window.scrollY - containerHeight - 1700 >= containerPos
       );
+
       setCardOpacity6(
         window.scrollY - containerHeight - 1900 >= containerPos &&
           window.scrollY - containerHeight - 2600 <= containerPos
@@ -116,18 +129,22 @@ const Staging = () => {
                   className={`${togglerOpacity} gap-[20px] xl:gap-[40px] mb-[30px] xl:mb-[100px] self-center grid grid-cols-[1fr_auto_1fr] grid-rows-1 max-w-[760px] uppercase justify-center text-[16px] xl:text-[24px] font-semibold leading-[130%]`}>
                   <p
                     className={`${
-                      blockOpacity1 ? 'text-white' : 'text-white opacity-[0.5]'
+                      isBlockOpacity1
+                        ? 'text-white'
+                        : 'text-white opacity-[0.5]'
                     }`}>
                     SKILLS UPGRADE
                   </p>
                   <p
                     className={`${
-                      blockOpacity2 ? 'text-white' : 'text-white opacity-[0.5]'
+                      isBlockOpacity2
+                        ? 'text-white'
+                        : 'text-white opacity-[0.5]'
                     }`}>
                     STRONG HARD SKILLS
                   </p>
                 </div>
-                {blockOpacity1 && (
+                {isBlockOpacity1 && (
                   <div className="grid grid-cols-3 grid-rows-1 gap-[50px]">
                     <StagingCard
                       classes={cardOpacity1}
@@ -146,7 +163,7 @@ const Staging = () => {
                     />
                   </div>
                 )}
-                {blockOpacity2 && (
+                {isBlockOpacity2 && (
                   <div className="grid grid-cols-3 grid-rows-1 gap-[50px]">
                     <StagingCard
                       classes={cardOpacity4}

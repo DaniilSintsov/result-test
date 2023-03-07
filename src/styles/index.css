@@ -103,23 +103,6 @@
   }
 }
 
-.showTranslate {
-  opacity: 1;
-  transform: translateX(36%);
-  animation: show 0.2s;
-}
-
-@keyframes showTranslate {
-  0% {
-    opacity: 0;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(36%);
-  }
-}
-
 .hideCard {
   transform: translateY(20%);
   opacity: 0;
